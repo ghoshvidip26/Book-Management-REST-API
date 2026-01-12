@@ -42,12 +42,13 @@ router.post("/books", async (req, res) => {
     });
 
     const bookData = await book.save();
+    console.log(bookData);
     console.log("Book ID: ", bookData._id);
-    return res.status(200).json({
-      success: true,
-      msg: "Book added successfully!",
-      bookData,
-    });
+    return res.status(201).json(
+      // success: true,
+      // msg: "Book added successfully!",
+      bookData
+    );
   } catch (error) {
     return res.status(400).json({
       success: false,
@@ -116,7 +117,7 @@ router.delete("/books/:id", async (req, res) => {
     const { id } = req.params;
 
     const book = await Book.findOneAndDelete({ id });
-
+    console.log(book);
     if (!book) {
       return res.status(404).json({
         success: false,
