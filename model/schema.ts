@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export interface IBook extends Document {
   id: string;
@@ -10,10 +10,10 @@ export interface IBook extends Document {
 
 const bookSchema = new Schema<IBook>(
   {
-    id: { type: String, required: true, default: uuidv4() },
+    id: { type: String, required: true, default: uuidv4 },
     title: { type: String, required: true },
     author: { type: String, required: true },
-    publishedYear: { type: Number, required: true }
+    publishedYear: { type: Number, required: true },
   },
   { timestamps: true }
 );

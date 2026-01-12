@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import { config } from "dotenv";
+
+config();
 
 const MONGODB_URI = process.env.MONGODB_URI!;
 if (!MONGODB_URI) throw new Error("Missing MONGODB_URI env");
@@ -11,7 +14,7 @@ export async function dbConnect() {
   if (!cached.promise) {
     cached.promise = mongoose
       .connect(MONGODB_URI, { bufferCommands: false })
-      .then(m => m);
+      .then((m) => m);
   }
 
   cached.conn = await cached.promise;
