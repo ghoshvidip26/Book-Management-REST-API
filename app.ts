@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import router from "./controller/router.js";
 import { dbConnect } from "./model/mongo.js";
+import { errorHandler } from "./middleware/errorHandler.js";
 const app = express();
 const port = process.env.PORT;
 
@@ -13,6 +14,7 @@ dbConnect()
   .catch((e) => {
     console.log(e);
   });
+app.use(errorHandler);
 app.use(cors());
 app.use(express.json());
 app.use("/api", router);

@@ -15,6 +15,12 @@ var storage = multer.diskStorage({
   },
 });
 
+router.get("/error", (req, res, next) => {
+  const error = new Error("Something went wrong!");
+  error.cause = 400;
+  next(error);
+});
+
 router.post("/books", async (req, res) => {
   try {
     const { title, author, publishedYear } = req.body;
